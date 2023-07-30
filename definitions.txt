@@ -1,0 +1,3 @@
+Linklists - linklist objects are called "menus" in the Navigation page of the Shopify admin
+asset_url - is a URL filter that returns the URL of a file inside the assets folder of a theme
+stylesheet_tag - is an HTML filter used to create HTML elements based on Liquid properties or store assets that you specify
