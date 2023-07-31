@@ -1,3 +1,24 @@
-Linklists - linklist objects are called "menus" in the Navigation page of the Shopify admin
-asset_url - is a URL filter that returns the URL of a file inside the assets folder of a theme
-stylesheet_tag - is an HTML filter used to create HTML elements based on Liquid properties or store assets that you specify
+Linklists 
+- linklist objects are called "menus" in the Navigation page of the Shopify admin
+asset_url 
+- is a URL filter that returns the URL of a file inside the assets folder of a theme
+
+stylesheet_tag
+- is an HTML filter used to create HTML elements based on Liquid properties or store assets that you specify
+
+{{ content_for_index }} 
+- an object used in the index.liquid. allows you to customize your homepage dynamically
+- by using this obejct you will have the "add section" button which allows you to customize your index page
+
+schema 
+- schema tags are used to create settings for your sections and you can find these settings in your customizer page like below
+- schema tags only accepts JSON formatted code
+
+{% capture %} {% endcapture %}
+- Capture is a variable tag used to capture the string inside of the opening and clisng tags and assigns it to a variable
+- variables that you create using capture are stored as strings
+
+{% cycle %}
+- loops through a group of strings and outputs them in the order that they were passed as paramenters
+- Each time cycle is called, the next string that was passed as a parameter is output
+
