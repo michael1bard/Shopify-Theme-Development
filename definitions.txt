@@ -22,3 +22,24 @@ schema
 - loops through a group of strings and outputs them in the order that they were passed as paramenters
 - Each time cycle is called, the next string that was passed as a parameter is output
 
+selected_or_first_available_variant
+- is an attribute of products object, used to return the variant object of the selected product
+
+Featured Image
+- is an attribute of products or variants used to retrieve images uploaded to products
+
+
+Form Types
+- {% form 'active_customer_password %}
+- {% form 'contact' %}
+- {% form 'currency' %}
+- {% form 'customer' %}
+- {% form 'create_customer' %}
+- {% form 'customer_address' %}
+- {% form 'customer_logon' %}
+- {% form 'guest_login' %}
+- {% form 'new_comment' %}
+- {% form 'product' %}
+- {% form 'recover_customer_password' %}
+- {% form 'reset_customer_password' %}
+- {% form 'storefront_password' %}
