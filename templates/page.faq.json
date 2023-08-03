@@ -3,16 +3,21 @@
     "template": {
       "type": "template-page-faq",
       "blocks": {
-        "new-faq-item": {
+        "5fb3d381-f293-4aad-a77e-9f383efaf678": {
           "type": "faq",
           "settings": {
-            "title": "How to create a block for this page template",
-            "answer": "<p>To create a block, you can open your customizer or you theme editor and then navigate to you FAQ page and there you shoudl be able to create an FAQ item</p>"
+            "title": "FAQ Title Example 1",
+            "answer": "<p>Answer 1<\/p>"
           }
         }
       },
-      "block_order": ["new-faq-item"]
+      "block_order": [
+        "5fb3d381-f293-4aad-a77e-9f383efaf678"
+      ],
+      "settings": {}
     }
   },
-  "order": ["template"]
+  "order": [
+    "template"
+  ]
 }

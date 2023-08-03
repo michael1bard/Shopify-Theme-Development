@@ -4,17 +4,27 @@
       "type": "template-page-default",
       "blocks": {
         "title": {
-          "type": "page_title"
+          "type": "page_title",
+          "settings": {}
         },
         "date": {
-          "type": "page_date"
+          "type": "page_date",
+          "settings": {}
         },
         "content": {
-          "type": "page_content"
+          "type": "page_content",
+          "settings": {}
         }
       },
-      "block_order": ["title", "date", "content"]
+      "block_order": [
+        "title",
+        "date",
+        "content"
+      ],
+      "settings": {}
     }
   },
-  "order": ["template"]
+  "order": [
+    "template"
+  ]
 }
