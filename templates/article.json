@@ -1,0 +1,29 @@
+{
+  "layout": "theme-blog-with-sidebar",
+  "sections": {
+    "template": {
+      "mb_comment": "references the section file",
+      "type": "template-article",
+      "mb_comment1": "now add the section blocks so we can reference the sidebar",
+      "blocks": {
+        "featured_image": {
+          "type": "featured_image"
+        },
+        "title": {
+          "type": "title"
+        },
+        "article_meta": {
+          "type": "article_meta"
+        },
+        "content": {
+          "type": "content"
+        }
+      },
+      "block_order": ["feaured_image", "title", "article_meta", "content"]
+    },
+    "sidebar": {
+      "type": "sidebar"
+    }
+  },
+  "order": ["template", "sidebar"]
+}
