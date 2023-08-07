@@ -1,0 +1,14 @@
+{
+  "general": {
+    "404": {
+      "title": "Pas trouve",
+      "subtext_html": "le page introuvable"
+    },
+    "Cart": {
+      "title": "Carte"
+    },
+    "Blog": {
+      "title": "Blog"
+    }
+  }
+}
