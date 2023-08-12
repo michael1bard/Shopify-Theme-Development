@@ -24,13 +24,13 @@
         {% assign image = product.featured_media.preview_image %}
 
         <div class="col-3 g-2">
-
           <div class="card" style:"width: 18rem">
             {% if image != blank %}
-              <img
-                class="card-img-top"
-                src="{{ image | img_url:'medium' }}"
-                alt="{{ product.title }}">
+              {% comment %} START creating a product modal {% endcomment %}
+              <a href="#" id="productInfoAnchor" product-handle="{{ product.handle }}" product-price = "{{ product.price | money_without_trailing_zeros }}">
+                <img class="card-img-top" src="{{ image | img_url: 'medium' }}" alt="{{ product.title }}">
+              </a>
+              {% comment %} END creating a product modal {% endcomment %}
             {% else %}
               {{ 'product-1' | placeholder_svg_tag: 'card-img-top' }}
             {% endif %}
@@ -54,3 +54,43 @@
     {%  render 'pagination', paginate:paginate %}
   {% endpaginate %}
 </div>
+
+{% comment %} START creating a product modal {% endcomment %}
+<div class="modal fade" id="productInfoModal" tabindex="-1" aria-hiden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <img src="" class="img-fluid" id="productInfoImg" alt="">
+          </div>
+          <div class="col-12 col-md-6">
+            <h1 id="productInfoTitle"></h1>
+            <h3 id="productInfoPrice"></h3>
+            <p id="productInfoDescription"></p>
+          </div>
+        </div>
+      </div>
+{% comment %} Start CART API {% endcomment %}
+<div class="modal-footer">
+  <form action="#" id="addToCartForm" class="row">
+    {% comment %} <input type="hidden" name="id" id="modalItemID" value=""> {% endcomment %}
+{% comment %} start from sections --> product-template.liquid {% endcomment %}
+  <select
+    name="id"
+    id="modalItemID"
+    class="form-select col-auto">
+  </select>
+
+    <input type="number" name="quantity" value="1" id="modalItemQuantity" min="1" class="col-auto">
+    <button type="submit" class="btn btn-success col-auto">Add to cart</button>
+  </form>
+</div>
+    </div>
+  </div>
+</div>
+
+{% comment %} END creating a product modal {% endcomment %}

@@ -1,0 +1,76 @@
+{% assign number_of_comments = article.comments_count %}{% if comment and comment.created_at %}
+  {% assign number_of_comments = article.comments_count %}
+{% endif %}
+
+
+{% capture author %}
+  <strong>{{ article.author }}</strong>
+{% endcapture %}
+{% capture date %}
+  <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'abbreviated_date' }}</time>
+{% endcapture %}
+
+
+<div class="position-relative text-center bg-light p-3 p-md-5">
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+    <h1 class="display-4">
+      <div class="display-4">{{ article.title }}</div>
+    </h1>
+    <p class="lead">
+      By{{ author }} published on{{ date }}
+    </p>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <div>{{ article.content }}</div>
+      <div class="comment-section">
+        {% if blog.comments_enabled? %}
+          <h2>{{ number_of_comments }}comment
+            {% if number_of_comments > 1 %}s{% endif %}
+          </h2>
+          {% paginate article.comments by 5 %}
+            {% for comment in article.comments %}
+              <div>
+                <div>{{ comment.content }}</div>
+                {{ comment.author }}
+                @{{ comment.created_at }}
+              </div>
+            {% endfor %}
+            {% render 'pagination', paginate: paginate %}
+          {% endpaginate %}
+
+          <div>
+            {% form 'new_comment', article %}
+              {{ form.errors | default_errors }}
+              <label for="CommentAuthor">name</label>
+              <input
+                type="text"
+                name="comment[author]"
+                id="CommentAuthor"
+                placeholder="name"
+                value="{{ form.author }}"
+                autocapitalize="words">
+              <label for="CommentEmail">email</label>
+              <input
+                type="email"
+                name="comment[email]"
+                id="CommentEmail"
+                placeholder="email"
+                value="{{ form.email }}"
+                autocorrect="off"
+                autocapitalize="off">
+              <label for="CommentBody">message</label>
+              <textarea
+                name="comment[body]"
+                id="CommentBody"
+                placeholder="message">{{ form.body }}</textarea>
+              <input type="submit" value="post">{% endform %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
