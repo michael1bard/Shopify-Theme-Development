@@ -100,10 +100,31 @@ if (modalAddToCartForm != null) {
       },
       body: JSON.stringify(formData),
     })
-      .then((resp) => resp.json())
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((data) => {
+        update_cart();
+      })
       .catch((err) => {
         console.error("Error: " + err);
       });
   });
 }
 // end cart api
+
+// function to update cart
+document.addEventListener("DOMContentLoaded", function () {
+  update_cart();
+});
+
+function update_cart() {
+  fetch("/cart.js")
+    .then((resp) => resp.json())
+    .then(
+      (data) =>
+        (document.getElementById("numberOfCartItems").innerHTML =
+          data.items.length)
+    )
+    .catch((err) => console.error(err));
+}
