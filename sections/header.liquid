@@ -43,11 +43,21 @@
         <input
           type="text"
           name="q"
-          value="{{ search.terms | escape }}">
+          value="{{ search.terms | escape }}" id="searchInputField">
       </form>
     </div>
   </div>
 </nav>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasSearchResult" aria-labelledby="offcanvasLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasLabel">Product Search Result</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    Content for the offcanvas goes here. You can place just about any Bootstrap component or custom elements here.
+  </div>
+</div>
 
 {% if shop.customer_accounts_enabled %}
   {% if customer %}
