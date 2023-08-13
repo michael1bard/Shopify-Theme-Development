@@ -22,6 +22,62 @@ if (localeItems.length > 0) {
   });
 }
 
+// addresses page - add provinces based on country selected
+
+if (document.getElementById("AddressCountryNew") != null) {
+  document
+    .getElementById("AddressCountryNew")
+    .addEventListener("change", function (e) {
+      var provinces =
+        this.options[this.selectedIndex].getAttribute("data-provinces");
+      var provinceSelector = document.getElementById("AddressProvinceNew");
+      var provinceArray = JSON.parse(provinces);
+
+      //console.log(provinceArray);
+      if (provinceArray.length < 1) {
+        provinceSelector.setAttribute("disabled", "disabled");
+      } else {
+        provinceSelector.removeAttribute("disabled");
+      }
+
+      provinceSelector.innerHTML = "";
+      var options = "";
+      for (var i = 0; i < provinceArray.length; i++) {
+        options +=
+          '<option value="' +
+          provinceArray[i][0] +
+          '">' +
+          provinceArray[i][0] +
+          "</option>";
+      }
+
+      provinceSelector.innerHTML = options;
+    });
+}
+
+if (document.getElementById("forgotPassword") != null) {
+  document
+    .getElementById("forgotPassword")
+    .addEventListener("click", function (e) {
+      console.log("I clicked");
+      const element = document.querySelector("#forgot_password_form");
+      if (element.classList.contains("d-none")) {
+        element.classList.remove("d-none");
+        element.classList.add("d-block");
+      }
+    });
+}
+
+var localeItems = document.querySelectorAll("#localeItem");
+if (localeItems.length > 0) {
+  localeItems.forEach((item) => {
+    item.addEventListener("click", (event) => {
+      document.getElementById("localeCode").value = item.getAttribute("lang");
+      document.getElementById("localization_form_tag").submit();
+    });
+  });
+}
+
 // product modal
 var productInfoAnchors = document.querySelectorAll("#productInfoAnchor");
 // var productModal = new bootstrap.Modal(document.getElementById("productInfoModal"),{});
@@ -130,37 +186,36 @@ function update_cart() {
 }
 
 // START lesson 44 - predictive search api
-var predictiveSearchInput = document.getElementById('searchInputField');
+var predictiveSearchInput = document.getElementById("searchInputField");
 var timer;
 
-var offcanvasSearch = document.getElementById('offcanvasSearchResult');
+var offcanvasSearch = document.getElementById("offcanvasSearchResult");
 var bsOffcanvas = new bootstrap.Offcanvas(offcanvasSearch);
 
-if(predictiveSearchInput != null) {
-    predictiveSearchInput.addEventListener('input', function(e) {
+if (predictiveSearchInput != null) {
+  predictiveSearchInput.addEventListener("input", function (e) {
+    clearTimeout(timer);
 
-        clearTimeout(timer);
-
-        if(predictiveSearchInput.value) {
-            timer = setTimeout(fetchPredictiveSearch, 3000);
-        }
-
-        
-    });
+    if (predictiveSearchInput.value) {
+      timer = setTimeout(fetchPredictiveSearch, 3000);
+    }
+  });
 }
 
 function fetchPredictiveSearch() {
-    fetch(`/search/suggest.json?q=${predictiveSearchInput.value}&resources[type]=product`)
-    .then(resp => resp.json())
-    .then(data => { 
-        console.log(data);
+  fetch(
+    `/search/suggest.json?q=${predictiveSearchInput.value}&resources[type]=product`
+  )
+    .then((resp) => resp.json())
+    .then((data) => {
+      console.log(data);
 
-        var products = data.resources.results.products;
+      var products = data.resources.results.products;
 
-        document.getElementById('search_results_body').innerHTML = '';
+      document.getElementById("search_results_body").innerHTML = "";
 
-        products.forEach(function(product, index) {
-            document.getElementById('search_results_body').innerHTML += `
+      products.forEach(function (product, index) {
+        document.getElementById("search_results_body").innerHTML += `
                 <div class="card" style="width: 19rem;">
                     <img src="${product.image} class="card-img-top">
                     <div class="card-body">
@@ -168,8 +223,8 @@ function fetchPredictiveSearch() {
                         <p class="card-text">$${product.price}</p>
                     </div>
                 </div>
-            `
-        });
-        bsOffcanvas.show();
+            `;
+      });
+      bsOffcanvas.show();
     });
 }
